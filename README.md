@@ -48,7 +48,7 @@ It is a collection of calculators that do various things; count the number of wo
           # ================================================================================
 
 
-          @character_count_with_spaces = "Replace this string with your answer."
+          @character_count_with_spaces = @text.length
 
           @character_count_without_spaces = "Replace this string with your answer."
 
