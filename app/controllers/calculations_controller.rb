@@ -100,7 +100,7 @@ class CalculationsController < ApplicationController
 
     @variance = @numbers.inject(0) {|sum, n| sum + (n - @mean)**2} / @numbers.size.to_f
 
-    @standard_deviation = @variance**(1/2)
+    @standard_deviation = Math.sqrt(@variance)
 
     @mode = "Replace this string with your answer."
 
