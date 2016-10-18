@@ -89,25 +89,46 @@ class CalculationsController < ApplicationController
     # The numbers the user input are in the array @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer."
+    @sorted_numbers = @numbers.sort
 
-    @count = "Replace this string with your answer."
+    @count =  @numbers.count
 
-    @minimum = "Replace this string with your answer."
+    @minimum = @numbers.min
 
-    @maximum = "Replace this string with your answer."
+    @maximum = @numbers.max
 
-    @range = "Replace this string with your answer."
+    @range = @numbers.max - @numbers.min
 
-    @median = "Replace this string with your answer."
+    @median = if @numbers.length.odd?
+      @numbers.sort[(@numbers.length / 2)]
+    else
+      (@numbers.sort[@numbers.length / 2] + @numbers.sort[(@numbers.length / 2) - 1]) / 2
+    end
 
-    @sum = "Replace this string with your answer."
+    @sum = @numbers.sum
 
-    @mean = "Replace this string with your answer."
+    @mean = @numbers.sum / @numbers.count
 
-    @variance = "Replace this string with your answer."
+    # VARIANCE >> From essential_ruby / 8_return_values.rb
+    # ========
+    # To find the variance of a set,
+    #  - we find the mean of the set
+    #  - for each number in the set,
+    #   - we find the difference between the number and the mean
+    #   - we square the difference
+    #  - the variance is the mean of the squared differences
 
-    @standard_deviation = "Replace this string with your answer."
+    z = @mean
+    sum = @numbers.inject(0){|accum, i| accum + (i - z) ** 2}
+
+    @variance = sum / @numbers.length.to_f
+
+    # STANDARD DEVIATION >> From essential_ruby / 8_return_values.rb
+    # ==================
+    # To find the standard deviation of a set,
+    #  - take the square root of the variance
+
+    @standard_deviation = @variance ** (1/2)
 
     @mode = "Replace this string with your answer."
 
